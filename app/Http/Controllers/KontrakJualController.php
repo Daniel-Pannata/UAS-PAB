@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KontrakJual;
 use Illuminate\Http\Request;
 
 class KontrakJualController extends Controller
@@ -12,7 +13,9 @@ class KontrakJualController extends Controller
     public function index()
     {
         //
-        return view("transaksi.kontrak.jual.index");
+        $kontrakjuals = KontrakJual::all();
+
+        return view("transaksi.kontrak.jual.index")->with('kontrakjuals', $kontrakjuals);
     }
 
     /**
@@ -21,6 +24,7 @@ class KontrakJualController extends Controller
     public function create()
     {
         //
+        return view('transaksi.kontrak.jual.create');
     }
 
     /**

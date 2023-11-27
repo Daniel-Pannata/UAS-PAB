@@ -12,6 +12,11 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
+            <a href="{{ url('/transaksi/kontrakjual/create') }}" class="btn btn-success btn-sm" title="Add New Kontrak Beli">
+                <i class="fa fa-plus" aria-hidden="true"></i> Add New
+            </a>
+            <br/>
+            <br/>
             <table id="example1" class="table table-bordered table-striped">
               <thead>
               <tr>
@@ -26,14 +31,16 @@
               </tr>
               </thead>
               <tbody>
+                @foreach ($kontrakjuals as $kontrakjual)
+
                 <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
+                    <td>{{$kontrakjual->id}}</td>
+                    <td>{{$kontrakjual->tanggal}}</td>
+                    <td>{{$kontrakjual->no_kontrak}}</td>
+                    <td>{{$kontrakjual['customer']['nama']}}</td>
+                    <td>{{$kontrakjual->mt}}</td>
+                    <td>{{$kontrakjual->harga}}</td>
+                    <td>{{$kontrakjual->total_harga}}</td>
                     <td class="project-actions text-right">
                         <a class="btn btn-primary btn-sm" href="#">
                             <i class="fas fa-folder">
@@ -53,7 +60,9 @@
                     </td>
 
                 </tr>
-              </tbody>
+                @endforeach
+
+            </tbody>
             </table>
           </div>
           <!-- /.card-body -->

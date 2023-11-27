@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KontrakBeli;
 use Illuminate\Http\Request;
 
 class KontrakBeliController extends Controller
@@ -12,7 +13,8 @@ class KontrakBeliController extends Controller
     public function index()
     {
         //
-        return view("transaksi.kontrak.beli.index");
+        $kontrakbelis = KontrakBeli::all();
+        return view("transaksi.kontrak.beli.index")->with('kontrakbelis', $kontrakbelis);
     }
 
     /**
@@ -21,6 +23,7 @@ class KontrakBeliController extends Controller
     public function create()
     {
         //
+        return view('transaksi.kontrak.beli.create');
     }
 
     /**

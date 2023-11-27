@@ -12,6 +12,12 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
+            <a href="{{ url('/transaksi/kontrakjual/create') }}" class="btn btn-success btn-sm" title="Add New Kontrak Beli">
+                <i class="fa fa-plus" aria-hidden="true"></i> Add New
+            </a>
+
+            <br/>
+            <br/>
             <table id="example1" class="table table-bordered table-striped">
               <thead>
               <tr>
@@ -28,16 +34,17 @@
               </tr>
               </thead>
               <tbody>
+                @foreach ($muatbongkars as $muatbongkar)
                 <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
+                    <td>{{$muatbongkar->id}}</td>
+                    <td>{{$muatbongkar->truk}}</td>
+                    <td>{{$muatbongkar->tanggalmuat}}</td>
+                    <td>{{$muatbongkar->tanggalbongkar}}</td>
+                    <td>{{$muatbongkar['kontrakbeli']['supplier']['nama']}}</td>
+                    <td>{{$muatbongkar['kontrakjual']['customer']['nama']}}</td>
+                    <td>{{$muatbongkar->muat}}</td>
+                    <td>{{$muatbongkar->bongkar}}</td>
+                    <td>{{$muatbongkar->susut}}</td>
 
                     <td class="project-actions text-right">
                         <a class="btn btn-primary btn-sm" href="#">
@@ -57,6 +64,8 @@
                         </a>
                     </td>
                 </tr>
+                @endforeach
+
               </tbody>
             </table>
           </div>

@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class KontrakBeli extends Model
 {
     use HasFactory;
+    public function supplier(){
+        return $this->belongsTo(Supplier::class,'id_supplier','id');
+    }
 }

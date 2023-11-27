@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MuatBongkar;
 use Illuminate\Http\Request;
 
 class MuatBongkarController extends Controller
@@ -12,7 +13,8 @@ class MuatBongkarController extends Controller
     public function index()
     {
         //
-        return view("transaksi.muatbongkar.index");
+        $muatbongkars = MuatBongkar::all();
+        return view("transaksi.muatbongkar.index")->with('muatbongkars', $muatbongkars);
     }
 
     /**
@@ -21,6 +23,7 @@ class MuatBongkarController extends Controller
     public function create()
     {
         //
+        return view('transaksi.muatbongkar.create');
     }
 
     /**

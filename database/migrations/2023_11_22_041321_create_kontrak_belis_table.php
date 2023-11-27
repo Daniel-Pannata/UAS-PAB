@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('tanggal');
             $table->string('no_kontrak');
-            $table->integer('id_pks');
+            $table->integer('id_supplier');
             $table->integer('mt');
             $table->integer('harga');
             $table->integer('total_harga');
