@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CustomersController;
+use App\Http\Controllers\Admin\SuppliersController;
 use App\Http\Controllers\KontrakBeliController;
 use App\Http\Controllers\KontrakJualController;
 
@@ -24,6 +25,7 @@ Route::get('/', function () {
 
 
 Route::resource('/admin/customers', CustomersController::class);
+
 // Route::controller(CustomerController::class)->group(function () {
 //     Route::get('/customer', 'index');
 //     Route::post('/customer/add','store');
@@ -34,6 +36,8 @@ Route::resource('/admin/customers', CustomersController::class);
 //     Route::post('/pks/add','store');
 
 // });
+Route::resource('/admin/suppliers', SuppliersController::class);
+
 
 Route::controller(KontrakBeliController::class)->group(function () {
     Route::get('/kontrakbeli', 'index');

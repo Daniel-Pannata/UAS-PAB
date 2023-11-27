@@ -47,7 +47,7 @@
               </a>
             </li>
             <li class="nav-item">
-                <a href="/master/supplier" class="nav-link">
+                <a href="/admin/suppliers" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Supplier</p>
                 </a>

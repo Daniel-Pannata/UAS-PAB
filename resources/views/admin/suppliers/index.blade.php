@@ -1,6 +1,5 @@
 @extends('layouts.app')
-
-@section('title','Customer')
+@section('title','Suppliers')
 
 @section('content')
     <div class="container">
@@ -8,13 +7,13 @@
 
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">Customers</div>
+                    <div class="card-header">Suppliers</div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/customers/create') }}" class="btn btn-success btn-sm" title="Add New Customer">
+                        <a href="{{ url('/admin/suppliers/create') }}" class="btn btn-success btn-sm" title="Add New Supplier">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
 
-                        <form method="GET" action="{{ url('/admin/customers') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                        <form method="GET" action="{{ url('/admin/suppliers') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
                                 <span class="input-group-append">
@@ -35,25 +34,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($customers as $item)
+                                @foreach($suppliers as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->nama }}</td><td>{{ $item->alamat }}</td><td>{{ $item->email }}</td>
                                         <td>
-                                            <a href="{{ url('/admin/customers/' . $item->id) }}" title="View Customer"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/admin/customers/' . $item->id . '/edit') }}" title="Edit Customer"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            <a href="{{ url('/admin/suppliers/' . $item->id) }}" title="View Supplier"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                            <a href="{{ url('/admin/suppliers/' . $item->id . '/edit') }}" title="Edit Supplier"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
-                                            <form method="POST" action="{{ url('/admin/customers' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                            <form method="POST" action="{{ url('/admin/suppliers' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Customer" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Supplier" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                                             </form>
                                         </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="pagination-wrapper"> {!! $customers->appends(['search' => Request::get('search')])->render() !!} </div>
+                            <div class="pagination-wrapper"> {!! $suppliers->appends(['search' => Request::get('search')])->render() !!} </div>
                         </div>
 
                     </div>

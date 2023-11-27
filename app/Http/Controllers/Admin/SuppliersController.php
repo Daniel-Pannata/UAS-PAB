@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
-use App\Models\Customer;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
-class CustomersController extends Controller
+class SuppliersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,16 +21,16 @@ class CustomersController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $customers = Customer::where('nama', 'LIKE', "%$keyword%")
+            $suppliers = Supplier::where('nama', 'LIKE', "%$keyword%")
                 ->orWhere('alamat', 'LIKE', "%$keyword%")
                 ->orWhere('email', 'LIKE', "%$keyword%")
                 ->orWhere('notelp', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $customers = Customer::latest()->paginate($perPage);
+            $suppliers = Supplier::latest()->paginate($perPage);
         }
 
-        return view('admin.customers.index', compact('customers'));
+        return view('admin.suppliers.index', compact('suppliers'));
     }
 
     /**
@@ -40,7 +40,7 @@ class CustomersController extends Controller
      */
     public function create()
     {
-        return view('admin.customers.create');
+        return view('admin.suppliers.create');
     }
 
     /**
@@ -52,12 +52,12 @@ class CustomersController extends Controller
      */
     public function store(Request $request)
     {
-
+        
         $requestData = $request->all();
+        
+        Supplier::create($requestData);
 
-        Customer::create($requestData);
-
-        return redirect('admin/customers')->with('flash_message', 'Customer added!');
+        return redirect('admin/suppliers')->with('flash_message', 'Supplier added!');
     }
 
     /**
@@ -69,9 +69,9 @@ class CustomersController extends Controller
      */
     public function show($id)
     {
-        $customer = Customer::findOrFail($id);
+        $supplier = Supplier::findOrFail($id);
 
-        return view('admin.customers.show', compact('customer'));
+        return view('admin.suppliers.show', compact('supplier'));
     }
 
     /**
@@ -83,9 +83,9 @@ class CustomersController extends Controller
      */
     public function edit($id)
     {
-        $customer = Customer::findOrFail($id);
+        $supplier = Supplier::findOrFail($id);
 
-        return view('admin.customers.edit', compact('customer'));
+        return view('admin.suppliers.edit', compact('supplier'));
     }
 
     /**
@@ -98,13 +98,13 @@ class CustomersController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        
         $requestData = $request->all();
+        
+        $supplier = Supplier::findOrFail($id);
+        $supplier->update($requestData);
 
-        $customer = Customer::findOrFail($id);
-        $customer->update($requestData);
-
-        return redirect('admin/customers')->with('flash_message', 'Customer updated!');
+        return redirect('admin/suppliers')->with('flash_message', 'Supplier updated!');
     }
 
     /**
@@ -116,8 +116,8 @@ class CustomersController extends Controller
      */
     public function destroy($id)
     {
-        Customer::destroy($id);
+        Supplier::destroy($id);
 
-        return redirect('admin/customers')->with('flash_message', 'Customer deleted!');
+        return redirect('admin/suppliers')->with('flash_message', 'Supplier deleted!');
     }
 }
