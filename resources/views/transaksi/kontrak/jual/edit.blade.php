@@ -1,3 +1,6 @@
+
+
+
 @extends('layouts.app2')
 @section('title','Kontrak Jual')
 
