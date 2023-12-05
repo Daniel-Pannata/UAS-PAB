@@ -1,5 +1,5 @@
 
-@extends('layouts.app')
+@extends('layouts.app2')
 
 @section('title','Kontrak Beli')
 @section('content')
@@ -12,7 +12,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <a href="{{ url('/transaksi/kontrakbeli/create') }}" class="btn btn-success btn-sm" title="Add New Kontrak Beli">
+            <a href="{{ route('kontrakbeli.create') }}" class="btn btn-success btn-sm" title="Add New Kontrak Beli">
                 <i class="fa fa-plus" aria-hidden="true"></i> Add New
             </a>
             <br/>
@@ -24,9 +24,11 @@
                 <th>Tanggal</th>
                 <th>No Kontrak</th>
                 <th>Supplier</th>
-                <th>MT</th>
+                <th>KG</th>
                 <th>Harga</th>
                 <th>Total Harga</th>
+                <th>Stock</th>
+
                 <th style="width: 20%">Action</th>
               </tr>
               </thead>
@@ -37,21 +39,24 @@
                     <td>{{$kontrakbeli->tanggal}}</td>
                     <td>{{$kontrakbeli->no_kontrak}}</td>
                     <td>{{$kontrakbeli['supplier']['nama']}}</td>
-                    <td>{{$kontrakbeli->mt}}</td>
+                    <td>{{$kontrakbeli->mt}} Kg</td>
                     <td>Rp. {{$kontrakbeli->harga}}</td>
                     <td>Rp. {{$kontrakbeli->total_harga}}</td>
+                    <td>{{$kontrakbeli->stock}} Kg</td>
+
+
                     <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="#">
+                        <a class="btn btn-primary btn-sm" href="{{route('kontrakbeli.show',$kontrakbeli->id)}}">
                             <i class="fas fa-folder">
                             </i>
                             View
                         </a>
-                        <a class="btn btn-info btn-sm" href="#">
+                        <a class="btn btn-info btn-sm" href="{{route('kontrakbeli.edit',$kontrakbeli->id)}}">
                             <i class="fas fa-pencil-alt">
                             </i>
                             Edit
                         </a>
-                        <a class="btn btn-danger btn-sm" href="#">
+                        <a class="btn btn-danger btn-sm" href="{{route('kontrakbeli.delete',$kontrakbeli->id)}}">
                             <i class="fas fa-trash">
                             </i>
                             Delete

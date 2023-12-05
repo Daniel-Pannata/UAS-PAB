@@ -1,5 +1,5 @@
 
-@extends('layouts.app')
+@extends('layouts.app2')
 
 @section('title','Kontrak Jual')
 @section('content')
@@ -12,7 +12,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <a href="{{ url('/transaksi/kontrakjual/create') }}" class="btn btn-success btn-sm" title="Add New Kontrak Beli">
+            <a href="{{ route('kontrakjual.create') }}" class="btn btn-success btn-sm" title="Add New Kontrak Beli">
                 <i class="fa fa-plus" aria-hidden="true"></i> Add New
             </a>
             <br/>
@@ -24,9 +24,11 @@
                 <th>Tanggal</th>
                 <th>No Kontrak</th>
                 <th>Customer</th>
-                <th>MT</th>
+                <th>KG</th>
                 <th>Harga</th>
                 <th>Total Harga</th>
+                <th>Stock</th>
+
                 <th style="width: 20%">Action</th>
               </tr>
               </thead>
@@ -38,21 +40,23 @@
                     <td>{{$kontrakjual->tanggal}}</td>
                     <td>{{$kontrakjual->no_kontrak}}</td>
                     <td>{{$kontrakjual['customer']['nama']}}</td>
-                    <td>{{$kontrakjual->mt}}</td>
-                    <td>{{$kontrakjual->harga}}</td>
-                    <td>{{$kontrakjual->total_harga}}</td>
+                    <td>{{$kontrakjual->mt}} Kg</td>
+                    <td>Rp. {{$kontrakjual->harga}}</td>
+                    <td>Rp. {{$kontrakjual->total_harga}}</td>
+                    <td>{{$kontrakjual->stock}} Kg</td>
+
                     <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="#">
+                        <a class="btn btn-primary btn-sm" href="{{route('kontrakjual.show',$kontrakjual->id)}}">
                             <i class="fas fa-folder">
                             </i>
                             View
                         </a>
-                        <a class="btn btn-info btn-sm" href="#">
+                        <a class="btn btn-info btn-sm" href="{{route('kontrakjual.edit',$kontrakjual->id)}}">
                             <i class="fas fa-pencil-alt">
                             </i>
                             Edit
                         </a>
-                        <a class="btn btn-danger btn-sm" href="#">
+                        <a class="btn btn-danger btn-sm" href="{{route('kontrakjual.delete',$kontrakjual->id)}}">
                             <i class="fas fa-trash">
                             </i>
                             Delete

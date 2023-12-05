@@ -18,7 +18,8 @@ return new class extends Migration
             $table->integer('id_supplier');
             $table->integer('mt');
             $table->integer('harga');
-            $table->integer('total_harga');
+            $table->bigInteger('total_harga');
+            $table->integer('stock');
             $table->timestamps();
         });
     }

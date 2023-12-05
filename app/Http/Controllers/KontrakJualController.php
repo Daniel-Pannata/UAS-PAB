@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\KontrakJual;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,8 @@ class KontrakJualController extends Controller
     public function create()
     {
         //
-        return view('transaksi.kontrak.jual.create');
+        $customers = Customer::all();
+        return view('transaksi.kontrak.jual.create')->with('customers',$customers);
     }
 
     /**
@@ -33,7 +35,22 @@ class KontrakJualController extends Controller
     public function store(Request $request)
     {
         //
+        $totalharga = $request->mt * $request->harga;
+        $tanggal = \Carbon\Carbon::parse($request->tanggal);
+        KontrakJual::insert([
+            'tanggal' => $tanggal,
+            'no_kontrak' => $request->no_kontrak,
+            'id_customer' => $request->id_customer,
+            'mt' => $request->mt,
+            'harga' => $request->harga,
+            'total_harga' => $totalharga,
+            'stock' => $request->mt
+        ]);
+
+        return redirect('/kontrakjual');
+
     }
+
 
     /**
      * Display the specified resource.
@@ -41,6 +58,9 @@ class KontrakJualController extends Controller
     public function show(string $id)
     {
         //
+        $kontrakjual = KontrakJual::findOrFail($id);
+        return view('transaksi.kontrak.jual.show')->with('kontrakjual',$kontrakjual);
+
     }
 
     /**
@@ -49,6 +69,9 @@ class KontrakJualController extends Controller
     public function edit(string $id)
     {
         //
+        $kontrakjual = KontrakJual::findOrFail($id);
+        $customers = Customer::all();
+        return view('transaksi.kontrak.jual.edit')->with('customers',$customers)->with('kontrakjual',$kontrakjual);
     }
 
     /**
@@ -57,6 +80,9 @@ class KontrakJualController extends Controller
     public function update(Request $request, string $id)
     {
         //
+
+        return redirect('/kontrakjual');
+
     }
 
     /**
@@ -65,5 +91,8 @@ class KontrakJualController extends Controller
     public function destroy(string $id)
     {
         //
+        KontrakJual::findOrfail($id)->delete();
+
+        return redirect('/kontrakjual');
     }
 }

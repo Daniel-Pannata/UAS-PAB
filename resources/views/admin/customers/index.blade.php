@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 
 @section('title','Customer')
 
@@ -20,14 +20,14 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Nama</th><th>Alamat</th><th>Email</th><th>Actions</th>
+                                        <th>#</th><th>Nama</th><th>Alamat</th><th>Email</th><th>No Telp</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($customers as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->nama }}</td><td>{{ $item->alamat }}</td><td>{{ $item->email }}</td>
+                                        <td>{{ $item->nama }}</td><td>{{ $item->alamat }}</td><td>{{ $item->email }}</td><td>{{ $item->notelp }}</td>
                                         <td>
                                             <a href="{{ url('/admin/customers/' . $item->id) }}" title="View Customer"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/admin/customers/' . $item->id . '/edit') }}" title="Edit Customer"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

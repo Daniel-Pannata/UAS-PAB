@@ -9,6 +9,7 @@ class MuatBongkar extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['id_kontrakbeli','id_kontrakjual','truk','tanggalmuat','tanggalbongkar','muat','bongkar','susut','ongkos','totalongkos','potongan','totalhargaongkos'];
 
     public function kontrakjual(){
         return $this->belongsTo(KontrakJual::class,'id_kontrakjual','id');

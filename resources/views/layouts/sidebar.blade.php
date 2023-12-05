@@ -12,7 +12,7 @@
         <img src="/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Alexander Pierce</a>
+        <a href="#" class="d-block">{{Auth::user()->name}}</a>
       </div>
     </div>
 
@@ -52,6 +52,12 @@
                   <p>Supplier</p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{route('users.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>User</p>
+                </a>
+            </li>
           </ul>
         </li>
         <li class="nav-item">
@@ -73,15 +79,15 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                    <a href="/kontrakjual" class="nav-link">
+                    <a href="/kontrakbeli" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Kontrak Jual</p>
+                        <p>Kontrak Beli</p>
                     </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/kontrakbeli" class="nav-link">
+                        <a href="/kontrakjual" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Kontrak Beli</p>
+                        <p>Kontrak Jual</p>
                         </a>
                     </li>
                 </ul>
@@ -92,6 +98,41 @@
                     <p>Muat Bongkar</p>
                   </a>
               </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Laporan
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/laporan/laba" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laba</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                  <a href="/laporan/pembelian" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Pembelian</p>
+                  </a>
+              </li>
+              <li class="nav-item">
+                <a href="/laporan/penjualan" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Penjualan</p>
+                </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/laporan/ongkos" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Pembayaran Ongkos</p>
+                    </a>
+                </li>
             </ul>
           </li>
       </ul>

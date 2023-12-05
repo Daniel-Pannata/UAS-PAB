@@ -21,6 +21,10 @@ return new class extends Migration
             $table->integer('muat');
             $table->integer('bongkar');
             $table->integer('susut');
+            $table->integer('ongkos');
+            $table->bigInteger('totalongkos');
+            $table->integer('potongan');
+            $table->bigInteger('totalhargaongkos');
             $table->timestamps();
         });
     }

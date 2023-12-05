@@ -1,5 +1,5 @@
 
-@extends('layouts.app')
+@extends('layouts.app2')
 
 @section('title','Muat Bongkar')
 @section('content')
@@ -12,7 +12,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <a href="{{ url('/transaksi/kontrakjual/create') }}" class="btn btn-success btn-sm" title="Add New Kontrak Beli">
+            <a href="{{ route('muatbongkar.create') }}" class="btn btn-success btn-sm" title="Add New Kontrak Beli">
                 <i class="fa fa-plus" aria-hidden="true"></i> Add New
             </a>
 
@@ -47,17 +47,17 @@
                     <td>{{$muatbongkar->susut}}</td>
 
                     <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="#">
+                        <a class="btn btn-primary btn-sm" href="{{route('muatbongkar.show',$muatbongkar->id)}}">
                             <i class="fas fa-folder">
                             </i>
                             View
                         </a>
-                        <a class="btn btn-info btn-sm" href="#">
+                        <a class="btn btn-info btn-sm" href="{{route('muatbongkar.edit',$muatbongkar->id)}}">
                             <i class="fas fa-pencil-alt">
                             </i>
                             Edit
                         </a>
-                        <a class="btn btn-danger btn-sm" href="#">
+                        <a class="btn btn-danger btn-sm" href="{{route('muatbongkar.delete',$muatbongkar->id)}}">
                             <i class="fas fa-trash">
                             </i>
                             Delete
