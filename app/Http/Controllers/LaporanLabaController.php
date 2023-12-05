@@ -17,10 +17,14 @@ class LaporanLabaController extends Controller
         $tanggalawal = \Carbon\Carbon::parse($request->tanggalawal);
         $tanggalakhir = \Carbon\Carbon::parse($request->tanggalakhir);
         $muatbongkars = MuatBongkar::where('tanggalbongkar','>=',$tanggalawal)->where('tanggalbongkar','<=',$tanggalakhir)->get();
-        return view('laporan.laba.cetak')->with('muatbongkars',$muatbongkars);
+        return view('laporan.laba.cetak')->with('muatbongkars',$muatbongkars)->with('tanggalawal',$tanggalawal)->with('tanggalakhir',$tanggalakhir);
     }
 
-    public function cetak_pdf(){
-
+    public function cetak_pdf(String $tanggalawal, String $tanggalakhir){
+        $tanggalawala = \Carbon\Carbon::parse($tanggalawal);
+        $tanggalakhira = \Carbon\Carbon::parse($tanggalakhir);
+        $muatbongkars = MuatBongkar::where('tanggalbongkar','>=',$tanggalawala)->where('tanggalbongkar','<=',$tanggalakhira)->get();
+        $pdf = PDF::loadView('laporan/laba/cetakpdf',['muatbongkars'=>$muatbongkars]);
+        return $pdf->download('laporan-ongkos');
     }
 }

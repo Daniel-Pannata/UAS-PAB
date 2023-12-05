@@ -90,19 +90,10 @@ Route::controller(LaporanLabaController::class)->group(function () {
     Route::get('/laporan/laba/cetak','cetak')->name('laporanpdf.laba')->middleware('auth');
     Route::get('/laporan/laba/cetakpdf','cetakpdf')->name('laporanpdfcetak.laba')->middleware('auth');
 });
-Route::controller(LaporanPenjualanController::class)->group(function () {
-    Route::get('/laporan/penjualan', 'index')->middleware('auth');
-    Route::post('/laporan/penjualan/cetak','cetak')->name('laporanpdf.penjualan')->middleware('auth');
-    Route::get('/laporan/penjualan/cetakpdf','cetakpdf')->name('laporanpdfcetak.penjualan')->middleware('auth');
-});
-Route::controller(LaporanPembelianController::class)->group(function () {
-    Route::get('/laporan/pembelian', 'index')->middleware('auth');
-    Route::post('/laporan/pembelian/cetak','cetak')->name('laporanpdf.pembelian')->middleware('auth');
-    Route::get('/laporan/pembelian/cetakpdf','cetakpdf')->name('laporanpdfcetak.pembelian')->middleware('auth');
-});
+
 Route::controller(LaporanOngkosController::class)->group(function () {
     Route::get('/laporan/ongkos', 'index')->middleware('auth');
-    Route::post('/laporan/ongkos/cetak','cetak')->name('laporanpdf.ongkos')->middleware('auth');
+    Route::get('/laporan/ongkos/cetak','cetak')->name('laporanpdf.ongkos')->middleware('auth');
     Route::get('/laporan/ongkos/cetakpdf','cetakpdf')->name('laporanpdfcetak.ongkos')->middleware('auth');
 });
 
