@@ -112,11 +112,14 @@
           <!-- this row will not appear when printing -->
           <div class="row no-print">
             <div class="col-12">
-                <a href="">
-                    <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-                        <i class="fas fa-download"></i> Generate PDF
-                      </button>
-                </a>
+                <form method="GET" target="_blank" action="{{route('laporanpdfcetak.ongkos')}}">
+                    <input type="hidden" value="{{$tanggalawal}}" id="tanggalawal" name="tanggalawal">
+                    <input type="hidden" value="{{$tanggalakhir}}" id="tanggalakhir" name="tanggalakhir">
+                        <input type="submit" class="btn btn-primary float-right" value="Generate PDF" style="margin-right: 5px;">
+
+                          </input>
+                </form>
+
             </div>
           </div>
         </div>

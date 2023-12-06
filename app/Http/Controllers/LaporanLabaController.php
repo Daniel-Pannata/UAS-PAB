@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MuatBongkar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use PDF;
+use \PDF;
 class LaporanLabaController extends Controller
 {
     //
@@ -20,11 +20,10 @@ class LaporanLabaController extends Controller
         return view('laporan.laba.cetak')->with('muatbongkars',$muatbongkars)->with('tanggalawal',$tanggalawal)->with('tanggalakhir',$tanggalakhir);
     }
 
-    public function cetak_pdf(String $tanggalawal, String $tanggalakhir){
-        $tanggalawala = \Carbon\Carbon::parse($tanggalawal);
-        $tanggalakhira = \Carbon\Carbon::parse($tanggalakhir);
+    public function cetakpdf(Request $request){
+        $tanggalawala = \Carbon\Carbon::parse($request->tanggalawal);
+        $tanggalakhira = \Carbon\Carbon::parse($request->tanggalakhir);
         $muatbongkars = MuatBongkar::where('tanggalbongkar','>=',$tanggalawala)->where('tanggalbongkar','<=',$tanggalakhira)->get();
-        $pdf = PDF::loadView('laporan/laba/cetakpdf',['muatbongkars'=>$muatbongkars]);
-        return $pdf->download('laporan-ongkos');
+        return view('laporan.laba.cetakpdf')->with('muatbongkars',$muatbongkars)->with('tanggalawal',$tanggalawala)->with('tanggalakhir',$tanggalakhira);
     }
 }

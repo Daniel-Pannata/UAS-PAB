@@ -66,11 +66,11 @@
                         <td>Rp. {{$muatbongkar->muat * $muatbongkar['kontrakbeli']['harga']}}</td>
                         <td>Rp. {{$muatbongkar->bongkar * $muatbongkar['kontrakjual']['harga']}}</td>
                         <td>Rp. {{$muatbongkar->totalhargaongkos}}</td>
-                        <td>Rp. {{$muatbongkar->muat * $muatbongkar['kontrakbeli']['harga'] - $muatbongkar->bongkar * $muatbongkar['kontrakjual']['harga'] - $muatbongkar->totalhargaongkos}}</td>
+                        <td>Rp. {{$muatbongkar->bongkar * $muatbongkar['kontrakjual']['harga'] - $muatbongkar->muat * $muatbongkar['kontrakbeli']['harga'] - $muatbongkar->totalhargaongkos}}</td>
                     </tr>
                     @php
                         $id++;
-                        $totalharga+=($muatbongkar->muat * $muatbongkar['kontrakbeli']['harga'] - $muatbongkar->bongkar * $muatbongkar['kontrakjual']['harga'] - $muatbongkar->totalhargaongkos)
+                        $totalharga+=($muatbongkar->bongkar * $muatbongkar['kontrakjual']['harga'] - $muatbongkar->muat * $muatbongkar['kontrakbeli']['harga'] - $muatbongkar->totalhargaongkos)
                     @endphp
                 @endforeach
                 </tbody>
@@ -93,7 +93,7 @@
                 <table class="table">
                   <tr>
                     <th style="width:50%">Total:</th>
-                    <td>{{$totalharga}}</td>
+                    <td>Rp. {{$totalharga}}</td>
                   </tr>
                 </table>
               </div>
@@ -105,11 +105,12 @@
           <!-- this row will not appear when printing -->
           <div class="row no-print">
             <div class="col-12">
-                <a href="">
-                    <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-                    <i class="fas fa-download"></i> Generate PDF
-                  </button>
-                </a>
+                <form method="GET" target="_blank" action="{{route('laporanpdfcetak.laba')}}">
+                    <input type="hidden" value="{{$tanggalawal}}" id="tanggalawal" name="tanggalawal">
+                    <input type="hidden" value="{{$tanggalakhir}}" id="tanggalakhir" name="tanggalakhir">
+                        <input type="submit" class="btn btn-primary float-right" value="Generate PDF" style="margin-right: 5px;">
+                        </input>
+                </form>
 
             </div>
           </div>
